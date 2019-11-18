@@ -86,7 +86,7 @@ render() {
                   {this.state.payments.length > 0 &&
                   <div>
                   <h2>Balance</h2>
-                  <h3>You will finish the financing in {this.state.payments.length} months at rate
+                  <h3>You will finish your financing in {this.state.payments.length} months at rate
                       of {this.state.paying}/month</h3>
                   <h3>Total interest paying {this.state.interests.reduce((a,b) => parseFloat(a) + parseFloat(b), 0).toFixed(2)}</h3>
                   this table will show maximum of 100 payments
