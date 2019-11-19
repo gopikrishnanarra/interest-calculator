@@ -26,7 +26,7 @@ function getMonthlyPayment() {
 }
 function getMonthlyPaymentsToCompare() {
     return <div>
-        <h5 className="h5">amount you want to pay monthly</h5>
+        <h5 className="h5">',' separated monthly payments to compare</h5>
         <input type="string" onChange={(e) => this.addPayment(e)}/>
     </div>;
 }
