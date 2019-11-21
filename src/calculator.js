@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 
 function getInterest() {
     return <div>
-        <h5 className="h5">enter interest rate</h5>
+        <h5 className="h5">Enter interest rate</h5>
         <input type="number" onChange={(e) => this.addInterest(e)}/>
     </div>;
 }
 function getAmount() {
     return <div>
-        <h5 className="h5">enter remaining amount</h5>
+        <h5 className="h5">Enter remaining amount</h5>
         <input type="number" onChange={(e) => this.addAmount(e)}/>
     </div>;
 }
@@ -26,8 +26,7 @@ function getMonthlyPayment() {
 }
 function getMonthlyPaymentsToCompare() {
     return <div>
-        <h5 className="h5">enter ',' separated monthly payments to compare</h5>
-        <input type="string" onChange={(e) => this.addPayment(e)}/>
+        <input type="number" onChange={(e) => this.getPaymentToCompare(e)}/>
     </div>;
 }
 
@@ -42,6 +41,7 @@ export default class Calculator extends Component {
               calculate: false,
               nextPayment: 0,
               payments: [],
+              paymentToCompare: [],
               interests: [],
               interestsToCompare: []
           }
@@ -60,6 +60,11 @@ export default class Calculator extends Component {
         this.setState({
             paying: e.target.value
         })
+    }
+    getPaymentToCompare(e) {
+        this.setState({
+            paymentToCompare: [e.target.value]
+        });
     }
     compare() {
         this.setState({
@@ -109,28 +114,24 @@ export default class Calculator extends Component {
     }
 
     getInterestsToCompare() {
-          const payments = this.state.paying.split(',');
         let interestsToCompare = [];
-
-        payments.forEach((payment) => {
               let interests = [];
               let nextPayment = 0;
               for(let i = 0; nextPayment >= 0; i++ ) {
                   if (i === 0) {
                       const interest = ((this.state.amount * this.state.interest) / 100) / 12;
                       interests[i] = interest.toFixed(3);
-                      nextPayment = ((parseInt(this.state.amount) + interest) - parseInt(payment))
+                      nextPayment = ((parseInt(this.state.amount) + interest) - parseInt(this.state.paymentToCompare))
                   }
                   if (i !== 0) {
                       const interest = ((parseInt(nextPayment) * this.state.interest) / 100) / 12;
                       interests[i] = interest.toFixed(3);
-                      nextPayment = interest + parseInt(nextPayment) - parseInt(payment)
+                      nextPayment = interest + parseInt(nextPayment) - parseInt(this.state.paymentToCompare)
                   }
               }
-            interestsToCompare[interests.length] = [payment, interests.reduce((a, b) => parseFloat(a) + parseFloat(b), 0).toFixed(2)];
-          });
+            interestsToCompare[interests.length] = [this.state.paymentToCompare, interests.reduce((a, b) => parseFloat(a) + parseFloat(b), 0).toFixed(2)];
         this.setState({
-            interestsToCompare
+            interestsToCompare: this.state.interestsToCompare.concat(interestsToCompare)
         });
     }
 
@@ -155,7 +156,7 @@ render() {
           })
           }
           function isButtonDisabled() {
-              return !this.state.amount || !this.state.paying || !this.state.interest
+              return !this.state.amount  || !this.state.interest || (!this.state.paying && !this.state.paymentToCompare)
           }
 
     return (
@@ -201,6 +202,7 @@ render() {
                   <div>
                       {getAmount.call(this)}
                       {getInterest.call(this)}
+                      <h5 className="h5">Add payment to compare</h5>
                       {getMonthlyPaymentsToCompare.call(this)}
                       <button disabled={isButtonDisabled.call(this)} onClick={() => this.getInterestsToCompare()}>
                           compare
