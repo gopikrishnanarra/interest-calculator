@@ -43,6 +43,7 @@ export default class Calculator extends Component {
               payments: [],
               paymentToCompare: [],
               interests: [],
+              isPaymentsValid: true,
               interestsToCompare: []
           }
       }
@@ -58,7 +59,9 @@ export default class Calculator extends Component {
     }
     addPayment(e) {
         this.setState({
-            paying: e.target.value
+            paying: e.target.value,
+            isPaymentsValid: true,
+            payments: []
         })
     }
     getPaymentToCompare(e) {
@@ -95,6 +98,12 @@ export default class Calculator extends Component {
         let nextPayment = 0;
         const interest1 = ((this.state.amount * this.state.interest) / 100) / 12;
         for(let i = 0; nextPayment >= 0; i++ ) {
+            if(payments.length > 0 && nextPayment > payments[i-1]) {
+                this.setState({
+                    isPaymentsValid: false
+                });
+                return;
+            }
                 if (i === 0) {
                     payments[i] = parseInt(this.state.amount);
                     interests[i] = interest1.toFixed(3);
@@ -109,7 +118,7 @@ export default class Calculator extends Component {
         }
         this.setState({
             payments: payments,
-            interests: interests
+            interests: interests,
         });
     }
 
@@ -137,6 +146,7 @@ export default class Calculator extends Component {
 
 
 render() {
+          console.log(this.state.isPaymentsValid);
           function getMonthsBalanceData() {
               return this.state.payments.map(balance => {
                   return ( <tr className="td">
@@ -180,20 +190,30 @@ render() {
                       {this.state.payments.length > 0 &&
                       <div>
                           <h2>Balance</h2>
-                          <h3>You will finish your financing in {this.state.payments.length} months at rate
-                              of {this.state.paying}/month</h3>
-                          <h3>Total interest
-                              paying {this.state.interests.reduce((a, b) => parseFloat(a) + parseFloat(b), 0).toFixed(2)}</h3>
-                          <table className="table">
-                              <tbody>
-                              <tr className="td">
-                                  <th className="th">payment months from today</th>
-                                  <th className="th">balance remained</th>
-                                  <th className="th">interest added</th>
-                              </tr>
-                              {getMonthsBalanceData.call(this)}
-                              </tbody>
-                          </table>
+                          {this.state.isPaymentsValid &&
+                              <div>
+                                  <h3>You will finish your financing in {this.state.payments.length} months at rate
+                                      of {this.state.paying}/month</h3>
+                                  <h3>Total interest
+                                      paying {this.state.interests.reduce((a, b) => parseFloat(a) + parseFloat(b), 0).toFixed(2)}</h3>
+                                  <table className="table">
+                                      <tbody>
+                                      <tr className="td">
+                                          <th className="th">payment months from today</th>
+                                          <th className="th">balance remained</th>
+                                          <th className="th">interest added</th>
+                                      </tr>
+                                      {getMonthsBalanceData.call(this)}
+                                      </tbody>
+                                  </table>
+                              </div>
+                          }
+                      </div>
+                      }
+                      {!this.state.isPaymentsValid &&
+                      <div>
+                          <h2>You will never finish your financing at rate
+                              of {this.state.paying}/month</h2>
                       </div>
                       }
                   </div>
