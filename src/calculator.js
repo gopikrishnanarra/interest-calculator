@@ -88,11 +88,13 @@ export default class Calculator extends Component {
             calculate: false,
             nextPayment: 0,
             payments: [],
+            paymentToCompare: [],
             interests: [],
-            interestsToCompare: {}
+            isPaymentsValid: true,
+            interestsToCompare: []
         })
     }
-    getInterestPerDay() {
+    calculatePayments() {
         let payments = [];
         let interests = [];
         let nextPayment = 0;
@@ -182,7 +184,7 @@ render() {
                       {getAmount.call(this)}
                       {getInterest.call(this)}
                       {getMonthlyPayment.call(this)}
-                      <button disabled={isButtonDisabled.call(this)} onClick={() => this.getInterestPerDay()}>get
+                      <button disabled={isButtonDisabled.call(this)} onClick={() => this.calculatePayments()}>get
                           payments
                       </button>
                       {getCloseButton.call(this)}
