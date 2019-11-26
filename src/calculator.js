@@ -173,6 +173,7 @@ render() {
 
     return (
               <div>
+                  <h2 className='h5'>simple interest</h2>
                   {!this.state.calculate && !this.state.compare &&
                       <div>
                           <button onClick={() => this.calculateInterests()}>calculate payments</button>

@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f83b3c63-b661-47a5-ac9f-61ffbb129712" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/calculator.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -116,6 +110,8 @@
       <workItem from="1574106907951" duration="1291000" />
       <workItem from="1574108803174" duration="6406000" />
       <workItem from="1574176807205" duration="725000" />
+      <workItem from="1574717737788" duration="2847000" />
+      <workItem from="1574797949768" duration="1654000" />
     </task>
     <task id="LOCAL-00001" summary="delete yarn.lock">
       <created>1574104030233</created>
@@ -138,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574107740586</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor">
+      <created>1574718158478</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1574718158478</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +163,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="delete yarn.lock" />
     <MESSAGE value="edit gitignore" />
+    <MESSAGE value="handle valid payments" />
     <MESSAGE value="refactor" />
     <option name="LAST_COMMIT_MESSAGE" value="refactor" />
   </component>
