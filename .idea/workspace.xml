@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f83b3c63-b661-47a5-ac9f-61ffbb129712" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/calculator.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -112,6 +113,7 @@
       <workItem from="1574176807205" duration="725000" />
       <workItem from="1574717737788" duration="2847000" />
       <workItem from="1574797949768" duration="1654000" />
+      <workItem from="1576007958442" duration="1058000" />
     </task>
     <task id="LOCAL-00001" summary="delete yarn.lock">
       <created>1574104030233</created>

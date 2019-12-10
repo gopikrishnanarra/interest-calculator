@@ -140,7 +140,7 @@ export default class Calculator extends Component {
                       nextPayment = interest + parseInt(nextPayment) - parseInt(this.state.paymentToCompare)
                   }
               }
-            interestsToCompare[interests.length] = [this.state.paymentToCompare, interests.reduce((a, b) => parseFloat(a) + parseFloat(b), 0).toFixed(2)];
+            interestsToCompare = [[this.state.paymentToCompare, interests.reduce((a, b) => parseFloat(a) + parseFloat(b), 0).toFixed(2), interests.length]];
         this.setState({
             interestsToCompare: this.state.interestsToCompare.concat(interestsToCompare)
         });
@@ -148,7 +148,6 @@ export default class Calculator extends Component {
 
 
 render() {
-          console.log(this.state.isPaymentsValid);
           function getMonthsBalanceData() {
               return this.state.payments.map(balance => {
                   return ( <tr className="td">
@@ -159,10 +158,11 @@ render() {
           })
           }
           function getComparePaymentsData() {
+              console.log(this.state);
               return this.state.interestsToCompare.map(interest => {
                   return ( <tr className="td">
                       <td className="td">{interest[0]}</td>
-                      <td className="td">{this.state.interestsToCompare.indexOf(interest)}</td>
+                      <td className="td">{interest[2]}</td>
                       <td className="td">{interest[1]}</td>
                   </tr>)
           })
